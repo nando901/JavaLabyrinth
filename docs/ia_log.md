@@ -1,6 +1,6 @@
 # Registre d'ús de la IA
 **Projecte:** Java Labyrinth: The Vibe Quest
-**Alumne:** Fernando Cascón 
+**Alumne:** Fernando Cascón
 **Mòdul:** Entorns de Desenvolupament — DAM1
 
 ---
@@ -26,6 +26,8 @@ En cap cas s'ha acceptat cap proposta sense analitzar-la, justificar-la i adapta
 | 2 | Fase 1 | ChatGPT | Vegeu entrada detallada #2 | Va suggerir un `while` amb `switch-case` i mètodes separats | Estructura de mètodes separats i `switch-case` | El `while` com a estructura del bucle principal | Vegeu entrada detallada #2 |
 | 3 | Fase 2 | Claude | Vegeu entrada detallada #3 | Va generar el codi PlantUML per al diagrama de classes | El codi PlantUML com a base del diagrama | Cap part descartada, però sí revisada i validada | Vegeu entrada detallada #3 |
 | 4 | Fase 2 | Claude | Vegeu entrada detallada #4 | Va generar el codi PlantUML per al diagrama d'activitat | El codi PlantUML com a base del diagrama | Cap part descartada, però sí revisada i validada | Vegeu entrada detallada #4 |
+| 5 | Fase 3 | Claude | Vegeu entrada detallada #5 | Va generar el codi Java complet de les 9 classes del projecte | L'estructura general i la separació de responsabilitats | Algunes decisions de nomenclatura adaptades al meu estil | Vegeu entrada detallada #5 |
+| 6 | Fase 4 | Claude | Vegeu entrada detallada #6 | Va proposar tres solucions per al problema dels emojis a Windows | La solució definitiva d'eliminar els emojis i usar etiquetes de text | Les solucions de `chcp` i `PrintStream` per ser incomplertes | Vegeu entrada detallada #6 |
 
 ---
 
@@ -154,3 +156,72 @@ No s'ha descartat cap element. Es va optar per un diagrama d'activitat en lloc d
 
 **Valoració crítica:**
 La resposta era correcta i completa. La decisió de usar un diagrama d'activitat va ser pròpia i prèvia a la generació: la IA va implementar el tipus de diagrama ja escollit.
+
+---
+
+### Entrada #5 — Generació del codi Java del projecte
+
+**Fase:** 3 — Entorn i prototip funcional
+**Eina:** Claude
+
+**Prompt:**
+```
+Genera el codi Java complet per a un dungeon crawler textual seguint
+l'arquitectura definida als diagrames: classe abstracta Personatge,
+Jugador, Enemic, GranDebugger, Sala, Item, Joc i EstatJoc. El joc ha
+de tenir 5 sales, combat per torns amb les opcions Atacar/Defensar/Usar
+Objecte, validació d'entrades amb try-catch i un sistema de fases per
+al cap final. El codi ha de seguir el meu estil: atributs protected a
+les classes pare, private amb getters/setters a les filles, Scanner amb
+nextLine() després de nextInt(), comentaris en català i switch-case per
+als menús.
+```
+
+**Resposta resumida de la IA:**
+Va generar els 9 fitxers Java complets seguint l'arquitectura dels diagrames i respectant l'estil de codificació indicat.
+
+**Decisió presa:**
+S'ha acceptat el codi com a base del prototip, però s'han revisat totes les classes per verificar que la lògica era correcta i coherent amb el disseny previ.
+
+**Què he aprofitat:**
+- L'estructura general de totes les classes i la separació de responsabilitats.
+- La implementació del sistema de fases del `GranDebugger`.
+- La validació d'entrades amb `try-catch` i `InputMismatchException`.
+- El `do-while` com a bucle principal, tal com havia decidit a la Fase 1.
+
+**Què he descartat:**
+- El nom `codiNet` per a la puntuació, que es valorà canviar per ser poc intuïtiu (pendent per a la Fase 6).
+- L'ús d'emojis als missatges de consola, que va resultar incompatible amb Windows (resolt a la Fase 4).
+
+**Valoració crítica:**
+La IA va generar un codi correcte i ben estructurat, però calia revisar-lo íntegrament per entendre cada decisió abans d'acceptar-la. El fet que el codi seguís exactament l'arquitectura dissenyada prèviament als diagrames demostra que el disseny previ va ser útil i ben definit.
+
+---
+
+### Entrada #6 — Resolució del problema d'emojis a Windows
+
+**Fase:** 4 — Proves i depuració
+**Eina:** Claude
+
+**Prompt:**
+```
+Els emojis del codi Java (com ara ⚔, ✔, ⚠) es mostren com a caràcters
+corruptes a la consola de PowerShell de Windows. Com puc solucionar-ho
+sense canviar la configuració del sistema?
+```
+
+**Resposta resumida de la IA:**
+Va proposar dues solucions: activar UTF-8 al terminal amb `chcp 65001` i forçar l'encoding de Java amb `System.setOut(new PrintStream(System.out, true, "UTF-8"))`.
+
+**Decisió presa:**
+Cap de les dues solucions proposades va funcionar correctament. Es va aplicar una solució pròpia diferent.
+
+**Què he aprofitat:**
+El diagnòstic del problema: la incompatibilitat entre l'encoding de PowerShell i els caràcters Unicode de Java.
+
+**Què he descartat:**
+- `chcp 65001`: el problema persistia perquè Java usava el seu propi encoding internament.
+- `PrintStream` amb UTF-8: requeria gestionar una excepció addicional i el problema continuava.
+
+**Valoració crítica:**
+Les solucions de la IA eren tècnicament vàlides en teoria però no resolien el problema en aquest entorn concret. La solució definitiva va ser pròpia: eliminar els emojis i substituir-los per etiquetes de text entre claudàtors (`[COMBAT]`, `[OK]`, `[!]`), que funcionen correctament en qualsevol terminal independentment de la configuració d'encoding.

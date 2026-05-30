@@ -18,7 +18,6 @@ public class Joc {
     }
 
     // INICIALITZACIÓ
-
     public void iniciar() {
         mostrarBenvinguda();
         crearJugador();
@@ -98,7 +97,7 @@ public class Joc {
 
     // COMBAT
     private void combatLoop(Enemic enemic) {
-        System.out.println("\n⚔  COMBAT INICIAT contra " + enemic.getNom() + "!\n");
+        System.out.println("\n[COMBAT] COMBAT INICIAT contra " + enemic.getNom() + "!\n");
 
         do {
             jugador.mostrarEstat();
@@ -140,7 +139,7 @@ public class Joc {
         } while (enemic.estaViu() && jugador.estaViu());
 
         if (!enemic.estaViu()) {
-            System.out.println("✔ Has derrotat " + enemic.getNom() + "!");
+            System.out.println("[OK] Has derrotat " + enemic.getNom() + "!");
             jugador.guanyarCodiNet(enemic.getRecompensa());
         }
     }
@@ -204,7 +203,6 @@ public class Joc {
     }
 
     // ITEMS
-
     private void recollirItem(Sala sala) {
         Item item = sala.getItem();
         System.out.println("\nTrobes un objecte: " + item.getNom());
@@ -246,12 +244,12 @@ public class Joc {
     private void mostrarFinal() {
         System.out.println("\n╔══════════════════════════════════════╗");
         if (estatActual == EstatJoc.VICTORIA) {
-            System.out.println("║           ✔  VICTÒRIA!               ║");
+            System.out.println("║              VICTORIA!               ║");
             System.out.println("╚══════════════════════════════════════╝");
             System.out.println("\nHas derrotat el Gran Debugger i escapat de la dungeon.");
             System.out.println("Codi Net acumulat: " + jugador.getCodiNet() + " punts.");
         } else {
-            System.out.println("║           ✘  DERROTA...              ║");
+            System.out.println("║              DERROTA...              ║");
             System.out.println("╚══════════════════════════════════════╝");
             System.out.println("\nL'energia de " + jugador.getNom() + " ha arribat a 0.");
             System.out.println("La dungeon t'ha vençut. Intenta-ho de nou.");

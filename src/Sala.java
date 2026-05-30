@@ -18,11 +18,11 @@ public class Sala {
         System.out.println("========================================");
 
         if (teEnemic()) {
-            System.out.println("⚔  Hi ha un enemic: " + enemic.getNom() + " [" + enemic.getTipus() + "]");
+            System.out.println("[ENEMIC] Hi ha un enemic: " + enemic.getNom() + " [" + enemic.getTipus() + "]");
         } else if (teItem()) {
-            System.out.println("✦  Hi ha un objecte al terra: " + item.getNom());
+            System.out.println("[ITEM]   Hi ha un objecte al terra: " + item.getNom());
         } else {
-            System.out.println("   La sala és silenciosa. No hi ha res.");
+            System.out.println("[BUIT]   La sala es silenciosa. No hi ha res.");
         }
     }
 

@@ -14,7 +14,7 @@ public class GranDebugger extends Enemic {
         if (novaFase > faseActual) {
             faseActual = novaFase;
             danyBase += 10;
-            System.out.println("\n⚠ El Gran Debugger entra a la FASE " + faseActual + "!");
+            System.out.println("\n[!] El Gran Debugger entra a la FASE " + faseActual + "!");
             System.out.println("  El seu atac augmenta a " + danyBase + " de dany base.\n");
         }
     }
