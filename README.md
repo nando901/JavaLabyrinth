@@ -1,0 +1,1 @@
+docs: afegir idea i abast del projecte (Fase 1)
