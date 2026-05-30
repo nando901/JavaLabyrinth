@@ -17,7 +17,10 @@ public class Joc {
         this.sales = new ArrayList<>();
     }
 
+    // -------------------------------------------------------
     // INICIALITZACIÓ
+    // -------------------------------------------------------
+
     public void iniciar() {
         mostrarBenvinguda();
         crearJugador();
@@ -30,20 +33,25 @@ public class Joc {
         System.out.println("║   JAVA LABYRINTH: THE VIBE QUEST     ║");
         System.out.println("╚══════════════════════════════════════╝");
         System.out.println("\nBenvingut, desenvolupador.");
-        System.out.println("La dungeon t'espera. Troba el Gran Debugger i escapa.\n");
+        System.out.println("La masmorra t'espera. Troba el Gran Debugger i escapa.\n");
     }
 
     private void crearJugador() {
-        System.out.print("Introdueix el nom del teu heroi: ");
-        String nom = sc.nextLine().trim();
-        if (nom.isEmpty()) nom = "Heroi";
+        String nom = "";
+        do {
+            System.out.print("Introdueix el nom del teu heroi: ");
+            nom = sc.nextLine().trim();
+            if (nom.isEmpty()) {
+                System.out.println("[!] El nom no pot estar buit. Torna-ho a intentar.");
+            }
+        } while (nom.isEmpty());
+
         jugador = new Jugador(nom);
         System.out.println("\nBenvingut, " + jugador.getNom() + "! Que comenci l'aventura.\n");
     }
-
     private void crearSales() {
         sales.add(new Sala(
-                "Sala 1 — Entrada de la dungeon\nMurs de pedra humida t'envolten. Una torxa parpelleja al fons.",
+                "Sala 1 — Entrada de la masmorra\nMurs de pedra humida t'envolten. Una torxa parpelleja al fons.",
                 new Enemic("Bug Menor", "Error Runtime", 30, 8, 10),
                 null
         ));
@@ -140,7 +148,7 @@ public class Joc {
 
         if (!enemic.estaViu()) {
             System.out.println("[OK] Has derrotat " + enemic.getNom() + "!");
-            jugador.guanyarCodiNet(enemic.getRecompensa());
+            jugador.guanyarPuntuacio(enemic.getRecompensa());
         }
     }
 
@@ -246,14 +254,43 @@ public class Joc {
         if (estatActual == EstatJoc.VICTORIA) {
             System.out.println("║              VICTORIA!               ║");
             System.out.println("╚══════════════════════════════════════╝");
-            System.out.println("\nHas derrotat el Gran Debugger i escapat de la dungeon.");
-            System.out.println("Codi Net acumulat: " + jugador.getCodiNet() + " punts.");
+            System.out.println("\nHas derrotat el Gran Debugger i escapat del dungeon.");
+            System.out.println("Puntuacio acumulada: " + jugador.getPuntuacio() + " punts.");
         } else {
             System.out.println("║              DERROTA...              ║");
             System.out.println("╚══════════════════════════════════════╝");
             System.out.println("\nL'energia de " + jugador.getNom() + " ha arribat a 0.");
-            System.out.println("La dungeon t'ha vençut. Intenta-ho de nou.");
+            System.out.println("El dungeon t'ha vençut. Intenta-ho de nou.");
         }
-        sc.close();
+
+        // Opció de tornar a jugar
+        System.out.println("\nVols tornar a jugar? (1. Si / 2. No)");
+        int opcio = -1;
+        do {
+            try {
+                System.out.print("> ");
+                opcio = sc.nextInt();
+                sc.nextLine();
+                if (opcio < 1 || opcio > 2) {
+                    System.out.println("Opcio no valida. Tria 1 o 2.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Introdueix un numero valid.");
+                sc.nextLine();
+            }
+        } while (opcio < 1 || opcio > 2);
+
+        if (opcio == 1) {
+            // Reiniciar el joc sense tancar el Scanner
+            salaActual = 0;
+            estatActual = EstatJoc.JUGANT;
+            sales.clear();
+            crearJugador();
+            crearSales();
+            buclePrincipal();
+        } else {
+            System.out.println("\nGracies per jugar. Fins aviat!");
+            sc.close();
+        }
     }
 }

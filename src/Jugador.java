@@ -2,13 +2,13 @@ import java.util.ArrayList;
 
 public class Jugador extends Personatge {
 
-    private int codiNet;
+    private int puntuacio;
     private int atac;
     private ArrayList<Item> inventari;
 
     public Jugador(String nom) {
         super(nom, 100);
-        this.codiNet = 0;
+        this.puntuacio = 0;
         this.atac = 15;
         this.inventari = new ArrayList<>();
     }
@@ -48,14 +48,14 @@ public class Jugador extends Personatge {
         System.out.println("Has recollit: " + item.getNom() + " — " + item.getDescripcio());
     }
 
-    public void guanyarCodiNet(int punts) {
-        codiNet += punts;
-        System.out.println("+" + punts + " Codi Net! Total: " + codiNet);
+    public void guanyarPuntuacio(int punts) {
+        puntuacio += punts;
+        System.out.println("+" + punts + " Puntuacio! Total: " + puntuacio);
     }
 
     public void mostrarEstat() {
         System.out.println("--- " + nom + " ---");
-        System.out.println("Energia: " + vida + "/" + vidaMax + "  |  Codi Net: " + codiNet);
+        System.out.println("Energia: " + vida + "/" + vidaMax + "  |  Puntuacio: " + puntuacio);
         if (!inventari.isEmpty()) {
             System.out.println("Inventari:");
             for (int i = 0; i < inventari.size(); i++) {
@@ -67,8 +67,8 @@ public class Jugador extends Personatge {
         }
     }
 
-    public int getCodiNet() {
-        return codiNet;
+    public int getPuntuacio() {
+        return puntuacio;
     }
 
     public int getAtac() {
