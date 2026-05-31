@@ -68,7 +68,7 @@ java-labyrinth-vibe-quest/
 
 ## Autor
 
-**Nando**
+**Fernando Cascón**
 DAM1 — Entorns de Desenvolupament
 Escola Pia Santa Anna — Mataró
 

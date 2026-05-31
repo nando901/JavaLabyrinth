@@ -38,7 +38,7 @@ El sistema es divideix en tres blocs lògics:
 - **Mètodes:** `rebreDany(dany: int): void`, `estaViu(): boolean`
 
 ### Jugador
-- **Atributs:** `codiNet: int`, `inventari: List<Item>`
+- **Atributs:** `puntuacio: int`, `inventari: List<Item>`
 - **Mètodes:** `atacar(enemic: Enemic): void`, `descansar(): void`, `usarObjecte(item: Item): void`
 
 ### Enemic
@@ -135,9 +135,13 @@ java-labyrinth-vibe-quest/
 │   ├── Enemic.java
 │   ├── GranDebugger.java
 │   ├── Sala.java
-│   └── Item.java
+│   ├── Item.java
+│   ├── EstatJoc.java
+│   └── TestJoc.java
 ├── docs/
 ├── diagrames/
 ├── evidencies/
-└── tests/
+├── tests/
+└── lib/
+    └── junit-platform-console-standalone-6.1.0.jar
 ```

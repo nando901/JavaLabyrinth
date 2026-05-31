@@ -29,7 +29,7 @@ L'objectiu principal és explorar una "dungeon" generada per sales, sobreviure a
 El jugador controla un heroi (desenvolupador) que ha de gestionar dos recursos principals:
 
 - **Energia** → equival a la vida del personatge.
-- **Codi Net** → equival als punts/experiència acumulats.
+- **Puntuació** → equival als punts/experiència acumulats.
 
 En cada sala, el jugador pot decidir entre explorar, descansar o lluitar.
 
@@ -75,7 +75,7 @@ El joc segueix el cicle següent de manera repetida:
 | `VICTÒRIA` | El jugador ha derrotat el cap final |
 | `DERROTA` | L'energia del jugador ha arribat a 0 |
 
-Variables que canvien durant la partida: `energia`, `codiNet`, `inventari`, `salaActual`.
+Variables que canvien durant la partida: `energia`, `Puntuació`, `inventari`, `salaActual`.
 
 ---
 
