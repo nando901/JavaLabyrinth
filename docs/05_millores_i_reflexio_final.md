@@ -14,6 +14,7 @@
 | M-02 | Renombrar `codiNet` per `puntuacio` | El nom `codiNet` no era intuïtiu per a un jugador que no coneix el context tècnic del projecte | Mitjana |
 | M-03 | Afegir opció de tornar a jugar al final de la partida | El joc es tancava directament en acabar, sense donar la possibilitat de jugar una altra partida sense reiniciar el programa | Mitjana |
 | M-04 | Afegir bifurcació de camins després de la Sala 2 | El recorregut era completament lineal, sense cap decisió real per part del jugador. Afegir una bifurcació apropa el joc al concepte de dungeon crawler real | Alta |
+| M-05 | Rebalancejar el joc: arma, sales de descans interactives, enemic al Camí B i estadístiques del cap final | El Camí A era pràcticament impossible (Gran Debugger 180HP vs atac 15). Es va afegir l'Espasa de Codi (+5 atac), una sala de descans interactiva a cada camí, un enemic al Camí B, i es va reduir el Gran Debugger (100HP, 18 dany, +8/fase). A més es van corregir els caràcters Unicode que mostraven interrogants a la consola | Alta |
 
 ---
 
@@ -25,6 +26,7 @@
 | M-02 — Renombrar `codiNet` per `puntuacio` | `Jugador.java`, `Joc.java` | Vegeu exemple abans/després |
 | M-03 — Opció de tornar a jugar | `Joc.java` | Vegeu exemple abans/després |
 | M-04 — Bifurcació de camins | `Joc.java` | Vegeu exemple abans/després |
+| M-05 — Rebalancejar el joc | `Joc.java`, `Jugador.java`, `GranDebugger.java` | Vegeu exemple abans/després |
 
 ---
 
@@ -165,6 +167,55 @@ if (cami == 1) {
     sales.add(new Sala("Sala 3B-2 — Arxiu Secret", null, new Item(...)));
 }
 ```
+
+---
+
+### M-05 — Rebalancejar el joc
+
+**Problema detectat:** El Camí A era pràcticament impossible de superar. El Gran Debugger tenia 180HP i feia 25 de dany, mentre que l'atac del jugador era de 15. A més, els caràcters de caixa (╔═║╚) i el guió llarg (—) mostraven interrogants a la consola de Windows.
+
+**Solucions aplicades:**
+
+**1. Arma auto-equipable (Jugador.java):**
+```java
+public void boostAtac(int quantitat) {
+    atac += quantitat;
+    System.out.println(nom + " equipa l'Espasa de Codi! L'atac augmenta a " + atac + ".");
+}
+```
+
+**2. Sala de descans interactiva (Joc.java):**
+```java
+// Abans: la sala de descans era igual que qualsevol sala d'item
+} else if (sala.teItem()) {
+    recollirItem(sala);
+}
+
+// Despres: si es sala de descans, s'ofereix usar l'inventari
+} else if (sala.teItem()) {
+    recollirItem(sala);
+    if (esSalaDescans(sala)) {
+        ofertarUsarItems();
+    }
+}
+```
+
+**3. Gran Debugger rebalancejat (GranDebugger.java):**
+```java
+// Abans
+super("Gran Debugger", "Cap Final", 180, 25, 100);
+private static final int VIDA_PER_FASE = 60;
+danyBase += 10;
+
+// Despres
+super("Gran Debugger", "Cap Final", 100, 18, 100);
+private static final int VIDA_PER_FASE = 50;
+danyBase += 8;
+```
+
+**4. Camí B reestructurat:** s'ha eliminat la sala d'item separada i s'ha afegit l'enemic NullPointerException seguit d'una sala de descans, equilibrant el risc entre els dos camins.
+
+**5. Icones corregides:** tots els caràcters Unicode problemàtics (╔═║╚, guions llargs —, punt volat ·) s'han substituït per caràcters ASCII equivalents (+, =, |, -).
 
 ---
 

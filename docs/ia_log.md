@@ -29,6 +29,7 @@ En cap cas s'ha acceptat cap proposta sense analitzar-la, justificar-la i adapta
 | 5 | Fase 3 | Claude | Vegeu entrada detallada #5 | Va generar el codi Java complet de les 9 classes del projecte | L'estructura general i la separació de responsabilitats | Algunes decisions de nomenclatura adaptades al meu estil | Vegeu entrada detallada #5 |
 | 6 | Fase 4 | Claude | Vegeu entrada detallada #6 | Va proposar tres solucions per al problema dels emojis a Windows | La solució definitiva d'eliminar els emojis i usar etiquetes de text | Les solucions de `chcp` i `PrintStream` per ser incomplertes | Vegeu entrada detallada #6 |
 | 7 | Fase 6 | Claude | Vegeu entrada detallada #7 | Va implementar la bifurcació de camins al mètode `crearSales()` | L'estructura del `if/else` per als dos camins i el mètode `demanarBifurcacio()` | Cap part descartada | Vegeu entrada detallada #7 |
+| 8 | Fase 6 | Claude | Vegeu entrada detallada #8 | Va rebalancejar el joc: arma, sales de descans, nou enemic al Camí B i noves estadístiques del Gran Debugger. Va corregir tots els caràcters Unicode problemàtics | Tots els canvis aplicats | Cap part descartada | Vegeu entrada detallada #8 |
 
 ---
 
@@ -257,3 +258,34 @@ Cap element. La idea de la bifurcació va ser pròpia i prèvia a la consulta; l
 
 **Valoració crítica:**
 La implementació era correcta i coherent. La decisió de fer el Camí A més arriscat i el Camí B més segur com a mecànica de risc/recompensa va ser una decisió de disseny pròpia que la IA va implementar fidelment.
+
+---
+
+### Entrada #8 — Rebalancejar el joc, sala de descans interactiva i correcció d'icones
+
+**Fase:** 6 — Refactorització i millores
+**Eina:** Claude
+
+**Prompt:**
+```
+El joc es impossible de superar pel Cami A. Afegeix una arma a la Sala 2
+que augmenti l'atac de 15 a 20, una sala de descans interactiva abans del
+cap final on es puguin usar items de l'inventari, un enemic al Cami B,
+i rebalanceja el Gran Debugger. Corregeix tambe els caracters especials
+que mostren interrogants a la consola de Windows.
+```
+
+**Resposta resumida de la IA:**
+Va reescriure `Joc.java` amb nova estructura de sales, va afegir `boostAtac()` a `Jugador.java`, va afegir `ofertarUsarItems()` per a les sales de descans, va rebalancejar `GranDebugger.java` (100HP, 18 dany, +8/fase) i va eliminar tots els caràcters Unicode problemàtics (╔═║╚, guions llargs, punt volat).
+
+**Decisió presa:**
+S'han acceptat tots els canvis. La sala de descans interactiva permet al jugador usar qualsevol item de l'inventari abans d'afrontar el cap final, cosa que millora significativament l'equilibri del joc.
+
+**Què he aprofitat:**
+L'estructura completa: arma auto-equipable, `ofertarUsarItems()` en bucle, nou enemic al Camí B (NullPointerException), reducció del Gran Debugger a 100HP i eliminació sistemàtica de tots els caràcters Unicode problemàtics.
+
+**Què he descartat:**
+Cap element. Tots els canvis eren necessaris i correctes.
+
+**Valoració crítica:**
+El problema d'equilibri era real i verificat durant les proves. La solució és equilibrada: el Camí A segueix sent més difícil però ara és superable, i el Camí B és segur però amb menys recursos. La sala de descans és un element de disseny que aporta agència al jugador en un moment crític de la partida.

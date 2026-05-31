@@ -21,7 +21,7 @@ El sistema es divideix en tres blocs lògics:
 | Component | Tipus | Responsabilitat |
 |---|---|---|
 | `Personatge` | Classe abstracta | Defineix els atributs i mètodes comuns a totes les entitats vives del joc |
-| `Jugador` | Classe (hereda de `Personatge`) | Gestiona l'energia, el codi net, l'inventari i les accions del jugador |
+| `Jugador` | Classe (hereda de `Personatge`) | Gestiona l'energia, la puntuació, l'inventari i les accions del jugador |
 | `Enemic` | Classe (hereda de `Personatge`) | Representa les amenaces que apareixen a les sales |
 | `GranDebugger` | Classe (hereda de `Enemic`) | Cap final del joc amb comportament especial per fases |
 | `Sala` | Classe | Conté la descripció de l'entorn i els esdeveniments de cada sala |

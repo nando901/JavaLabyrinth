@@ -26,7 +26,7 @@ L'objectiu d'aquesta fase és verificar que el joc funciona correctament en tots
 | CP-02 | Validar que el menú de combat rebutja entrades no vàlides | Introduir `a` i després `4` | El programa mostra un missatge d'error i torna a demanar l'opció | Mostra "Introdueix un número vàlid." i "Opció no vàlida. Tria entre 1 i 3." | [OK] Superada |
 | CP-03 | Comprovar el comportament en triar "Usar objecte" amb inventari buit | Seleccionar opció `3` sense items | El sistema avisa que no hi ha objectes i l'enemic aprofita per atacar | Mostra el missatge i l'enemic ataca correctament | [OK] Superada |
 | CP-04 | Comprovar la condició de derrota | Deixar que l'energia arribi a 0 | El joc finalitza i mostra el missatge de DERROTA | El joc finalitza correctament amb el missatge esperat | [OK] Superada |
-| CP-05 | Comprovar que s'arriba correctament a la sala final | Completar les 4 primeres sales | Es mostra la Sala 5 amb el Gran Debugger com a enemic | Es mostra correctament amb vida 180/180 i Fase 1 | [OK] Superada |
+| CP-05 | Comprovar que s'arriba correctament a la sala final | Completar totes les sales del camí escollit | Es mostra la Sala Final amb el Gran Debugger com a enemic | Es mostra correctament amb vida 100/100 i Fase 1 | [OK] Superada |
 
 ---
 

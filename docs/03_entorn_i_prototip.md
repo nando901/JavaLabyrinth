@@ -86,7 +86,7 @@ Les opcions d'acció del jugador durant el combat es gestionen amb un `switch-ca
 
 ### GranDebugger amb sistema de fases
 
-El cap final (`GranDebugger`) hereta d'`Enemic` i afegeix un sistema de fases: cada vegada que perd 60 punts de vida, augmenta el seu dany base en 10. Això es comprova automàticament a cada atac sobreescrivint el mètode `atacarJugador()`.
+El cap final (`GranDebugger`) hereta d'`Enemic` i afegeix un sistema de fases: cada vegada que perd 50 punts de vida, augmenta el seu dany base en 8. Això es comprova automàticament a cada atac sobreescrivint el mètode `atacarJugador()`.
 
 ---
 
