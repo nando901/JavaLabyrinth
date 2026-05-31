@@ -17,6 +17,11 @@ public class Jugador extends Personatge {
         return atac;
     }
 
+    public void boostAtac(int quantitat) {
+        atac += quantitat;
+        System.out.println(nom + " equipa l'Espasa de Codi! L'atac augmenta a " + atac + ".");
+    }
+
     public void defensar(int dany) {
         // Defensar redueix el dany rebut a la meitat
         int danyReduit = dany / 2;
@@ -30,7 +35,7 @@ public class Jugador extends Personatge {
             return;
         }
         if (index < 0 || index >= inventari.size()) {
-            System.out.println("Selecció no vàlida.");
+            System.out.println("Seleccio no valida.");
             return;
         }
         Item item = inventari.get(index);
@@ -45,7 +50,7 @@ public class Jugador extends Personatge {
 
     public void afegirItem(Item item) {
         inventari.add(item);
-        System.out.println("Has recollit: " + item.getNom() + " — " + item.getDescripcio());
+        System.out.println("Has recollit: " + item.getNom() + " - " + item.getDescripcio());
     }
 
     public void guanyarPuntuacio(int punts) {
@@ -55,7 +60,7 @@ public class Jugador extends Personatge {
 
     public void mostrarEstat() {
         System.out.println("--- " + nom + " ---");
-        System.out.println("Energia: " + vida + "/" + vidaMax + "  |  Puntuacio: " + puntuacio);
+        System.out.println("Energia: " + vida + "/" + vidaMax + "  |  Atac: " + atac + "  |  Puntuacio: " + puntuacio);
         if (!inventari.isEmpty()) {
             System.out.println("Inventari:");
             for (int i = 0; i < inventari.size(); i++) {

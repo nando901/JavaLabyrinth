@@ -16,7 +16,7 @@ public class Enemic extends Personatge {
     }
 
     public int atacarJugador() {
-        // Variació aleatòria del dany entre el 80% i el 120% del dany base
+        // Variacio aleatoria del dany entre el 80% i el 120% del dany base
         int variacio = random.nextInt(5) - 2;
         int dany = Math.max(1, danyBase + variacio);
         return dany;
@@ -24,7 +24,7 @@ public class Enemic extends Personatge {
 
     public void mostrarEstat() {
         System.out.println("[" + tipus + "] " + nom
-                + " — Vida: " + vida + "/" + vidaMax);
+                + " - Vida: " + vida + "/" + vidaMax + " | Atac: ~" + danyBase);
     }
 
     public String getTipus() {

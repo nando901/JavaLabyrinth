@@ -106,10 +106,14 @@ El prototip inicial permet:
 | Sala | Contingut | Enemic / Item |
 |---|---|---|
 | Sala 1 — Entrada del Dungeon | Enemic | Bug Menor (30 vida, 8 dany) |
-| Sala 2 — Corredor dels Logs | Item | Poció de Refactoring (+30 energia) |
-| Sala 3 — Cambra del NullPointer | Enemic | NullPointerException (50 vida, 14 dany) |
-| Sala 4 — Arxiu de les Dependències | Item | Kit de Debugging (+50 energia) |
-| Sala 5 — Cambra del Gran Debugger | Cap final | Gran Debugger (180 vida, 25 dany base, 3 fases) |
+| Sala 2 — Armeria Abandonada | Arma | Espasa de Codi (+5 atac, s'equipa directament) |
+| Sala 3 — Corredor dels Logs | Item | Poció de Refactoring (+30 energia) |
+| — | **BIFURCACIÓ** | Tries entre el Camí A o el Camí B |
+| Sala 4A — Cambra Fosca *(Camí A)* | Enemic | StackOverflow (70 vida, 18 dany, +35 puntuació) |
+| Sala 5A — Sala de Descans *(Camí A)* | Item + descans | Kit de Debugging (+50 energia) |
+| Sala 4B — Corredor de les Excepcions *(Camí B)* | Enemic | NullPointerException (40 vida, 10 dany, +15 puntuació) |
+| Sala 4B-2 — Sala de Descans *(Camí B)* | Item + descans | Poció Menor (+20 energia) |
+| Sala Final — Cambra del Gran Debugger | Cap final | Gran Debugger (100 vida, 18 dany base) |
 
 ---
 

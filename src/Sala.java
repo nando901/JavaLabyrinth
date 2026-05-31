@@ -19,6 +19,7 @@ public class Sala {
 
         if (teEnemic()) {
             System.out.println("[ENEMIC] Hi ha un enemic: " + enemic.getNom() + " [" + enemic.getTipus() + "]");
+            System.out.println("         Vida: " + enemic.getVida() + "/" + enemic.getVidaMax() + " | Atac aproximat: " + enemic.getDanyBase());
         } else if (teItem()) {
             System.out.println("[ITEM]   Hi ha un objecte al terra: " + item.getNom());
         } else {

@@ -17,10 +17,7 @@ public class Joc {
         this.sales = new ArrayList<>();
     }
 
-    // -------------------------------------------------------
-    // INICIALITZACIÓ
-    // -------------------------------------------------------
-
+    // INICIALITZACIO
     public void iniciar() {
         mostrarBenvinguda();
         crearJugador();
@@ -29,9 +26,9 @@ public class Joc {
     }
 
     private void mostrarBenvinguda() {
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║   JAVA LABYRINTH: THE VIBE QUEST     ║");
-        System.out.println("╚══════════════════════════════════════╝");
+        System.out.println("+======================================+");
+        System.out.println("|   JAVA LABYRINTH: THE VIBE QUEST     |");
+        System.out.println("+======================================+");
         System.out.println("\nBenvingut, desenvolupador.");
         System.out.println("La dungeon t'espera. Troba el Gran Debugger i escapa.\n");
     }
@@ -50,51 +47,55 @@ public class Joc {
     }
 
     private void crearSales() {
-        // Sales fixes
+        // Sales comunes inicials
         sales.add(new Sala(
-                "Sala 1 — Entrada del Dungeon\nMurs de pedra humida t'envolten. Una torxa parpelleja al fons.",
+                "Sala 1 - Entrada del Dungeon\nMurs de pedra humida t'envolten. Una torxa parpelleja al fons.",
                 new Enemic("Bug Menor", "Error Runtime", 30, 8, 10),
                 null
         ));
         sales.add(new Sala(
-                "Sala 2 — Corredor dels Logs\nFileres de codi erroni cobreixen les parets. Fa olor de stack overflow.",
+                "Sala 2 - Armeria Abandonada\nUna espasa vella brilla entre la foscor. Alguna cosa util t'espera.",
+                null,
+                new Item("Espasa de Codi", 5, "Augmenta l'atac del heroi en 5 punts.")
+        ));
+        sales.add(new Sala(
+                "Sala 3 - Corredor dels Logs\nFileres de codi erroni cobreixen les parets. Fa olor de stack overflow.",
                 null,
                 new Item("Pocio de Refactoring", 30, "Restaura 30 punts d'energia.")
         ));
 
-        // Bifurcació: el jugador tria el camí
+        // Bifurcacio: el jugador tria el cami
         int cami = demanarBifurcacio();
 
         if (cami == 1) {
             // Cami A: mes risc, mes recompensa
             sales.add(new Sala(
-                    "Sala 3A — Cambra Fosca\nFoscor absoluta. Sents una respiracio pesada al teu costat.",
+                    "Sala 4A - Cambra Fosca\nFoscor absoluta. Sents una respiracio pesada al teu costat.",
                     new Enemic("StackOverflow", "Error Fatal", 70, 18, 35),
                     null
             ));
-        } else {
-            // Cami B: mes segur, dos items
             sales.add(new Sala(
-                    "Sala 3B — Magatzem Abandonat\nPrestatgeries plenes de fragments de codi antic. Res es mou.",
+                    "Sala 5A - Sala de Descans\nUna habitacio tranquil.la. Trobes provisions abans del combat final.",
                     null,
-                    new Item("Kit de Reparacio", 40, "Restaura 40 punts d'energia.")
+                    new Item("Kit de Debugging", 50, "Restaura 50 punts d'energia.")
             ));
-            // Segona sala del cami B amb un segon item
+        } else {
+            // Cami B: mes segur, menys recompensa
             sales.add(new Sala(
-                    "Sala 3B-2 — Arxiu Secret\nUn cofre ocult rere una pila de logs. Potser hi ha alguna cosa util.",
+                    "Sala 4B - Corredor de les Excepcions\nEl terra vibra. Un error critic apareix al teu pas.",
+                    new Enemic("NullPointerException", "Error Critic", 40, 10, 15),
+                    null
+            ));
+            sales.add(new Sala(
+                    "Sala 4B-2 - Sala de Descans\nUna habitacio tranquil.la. Trobes alguna cosa util abans del combat final.",
                     null,
-                    new Item("Poció Extra", 25, "Restaura 25 punts d'energia.")
+                    new Item("Pocio Menor", 20, "Restaura 20 punts d'energia.")
             ));
         }
 
-        // Sales fixes finals
+        // Sala final comuna
         sales.add(new Sala(
-                "Sala 4 — Arxiu de les Dependencies\nPaquets trencats per tot arreu. El terra tremola.",
-                null,
-                new Item("Kit de Debugging", 50, "Restaura 50 punts d'energia.")
-        ));
-        sales.add(new Sala(
-                "Sala 5 — Cambra del Gran Debugger\nUna llum vermella il·lumina la sala. El cap final t'espera.",
+                "Sala Final - Cambra del Gran Debugger\nUna llum vermella illumina la sala. El cap final t'espera.",
                 new GranDebugger(),
                 null
         ));
@@ -103,8 +104,8 @@ public class Joc {
     private int demanarBifurcacio() {
         System.out.println("\n========================================");
         System.out.println("Davant teu hi ha dues portes.");
-        System.out.println("  1. [CAMI A] Porta fosca — Sembla perillosa. Potser hi ha mes recompensa.");
-        System.out.println("  2. [CAMI B] Porta il·luminada — Sembla segura. Probablement hi ha recursos.");
+        System.out.println("  1. [CAMI A] Porta fosca - Sembla perillosa. Potser hi ha mes recompensa.");
+        System.out.println("  2. [CAMI B] Porta illuminada - Sembla segura. Probablement hi ha recursos.");
         System.out.println("========================================");
         System.out.println("Quin cami tries?");
 
@@ -126,10 +127,7 @@ public class Joc {
         return opcio;
     }
 
-    // -------------------------------------------------------
     // BUCLE PRINCIPAL
-    // -------------------------------------------------------
-
     public void buclePrincipal() {
         do {
             Sala sala = sales.get(salaActual);
@@ -140,8 +138,12 @@ public class Joc {
                 combatLoop(sala.getEnemic());
             } else if (sala.teItem()) {
                 recollirItem(sala);
+                // Si es una sala de descans, oferim usar l'inventari
+                if (esSalaDescans(sala)) {
+                    ofertarUsarItems();
+                }
             } else {
-                System.out.println("\nNo hi ha res aquí. Continues endavant.");
+                System.out.println("\nNo hi ha res aqui. Continues endavant.");
             }
 
             verificarCondicions();
@@ -155,10 +157,7 @@ public class Joc {
         mostrarFinal();
     }
 
-    // -------------------------------------------------------
     // COMBAT
-    // -------------------------------------------------------
-
     private void combatLoop(Enemic enemic) {
         System.out.println("\n[COMBAT] COMBAT INICIAT contra " + enemic.getNom() + "!\n");
 
@@ -181,8 +180,7 @@ public class Joc {
                         int danyEnemic = enemic.atacarJugador();
                         jugador.defensar(danyEnemic);
                     }
-                    // En defensar l'enemic no ataca un segon cop
-                    System.out.println(jugador.getNom() + " adopta posició defensiva.");
+                    System.out.println(jugador.getNom() + " adopta posicio defensiva.");
                     break;
                 case 3:
                     // Usar objecte
@@ -208,7 +206,7 @@ public class Joc {
     }
 
     private int demanarAccioCombat() {
-        System.out.println("\nQuè vols fer?");
+        System.out.println("\nQue vols fer?");
         System.out.println("  1. Atacar");
         System.out.println("  2. Defensar");
         System.out.println("  3. Usar objecte");
@@ -220,10 +218,10 @@ public class Joc {
                 opcio = sc.nextInt();
                 sc.nextLine();
                 if (opcio < 1 || opcio > 3) {
-                    System.out.println("Opció no vàlida. Tria entre 1 i 3.");
+                    System.out.println("Opcio no valida. Tria entre 1 i 3.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Introdueix un número vàlid.");
+                System.out.println("Introdueix un numero valid.");
                 sc.nextLine();
             }
         } while (opcio < 1 || opcio > 3);
@@ -253,11 +251,11 @@ public class Joc {
                 index = sc.nextInt() - 1;
                 sc.nextLine();
                 if (index < 0 || index >= inventari.size()) {
-                    System.out.println("Selecció no vàlida.");
+                    System.out.println("Seleccio no valida.");
                     index = -1;
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Introdueix un número vàlid.");
+                System.out.println("Introdueix un numero valid.");
                 sc.nextLine();
             }
         } while (index < 0);
@@ -265,14 +263,17 @@ public class Joc {
         jugador.usarObjecte(index);
     }
 
-    // -------------------------------------------------------
     // ITEMS
-    // -------------------------------------------------------
-
     private void recollirItem(Sala sala) {
         Item item = sala.getItem();
-        System.out.println("\nTrobes un objecte: " + item.getNom());
-        System.out.println("Vols recollir-lo? (1. Sí / 2. No)");
+        System.out.println("\nTrobes: " + item.getNom());
+
+        // L'Espasa de Codi s'equipa automaticament
+        if (item.getNom().equals("Espasa de Codi")) {
+            System.out.println("Vols equipar-la? (1. Si / 2. No)");
+        } else {
+            System.out.println("Vols recollir-lo? (1. Si / 2. No)");
+        }
 
         int opcio = -1;
         do {
@@ -281,26 +282,99 @@ public class Joc {
                 opcio = sc.nextInt();
                 sc.nextLine();
                 if (opcio < 1 || opcio > 2) {
-                    System.out.println("Opció no vàlida. Tria 1 o 2.");
+                    System.out.println("Opcio no valida. Tria 1 o 2.");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Introdueix un número vàlid.");
+                System.out.println("Introdueix un numero valid.");
                 sc.nextLine();
             }
         } while (opcio < 1 || opcio > 2);
 
         if (opcio == 1) {
-            jugador.afegirItem(item);
+            if (item.getNom().equals("Espasa de Codi")) {
+                // L'espasa augmenta l'atac directament, no va a l'inventari
+                jugador.boostAtac(item.getEfecte());
+            } else {
+                jugador.afegirItem(item);
+            }
             sala.recollirItem();
         } else {
             System.out.println("Deixes l'objecte al terra i continues.");
         }
     }
 
-    // -------------------------------------------------------
-    // VERIFICACIÓ DE CONDICIONS
-    // -------------------------------------------------------
+    // SALA DE DESCANS
+    private boolean esSalaDescans(Sala sala) {
+        return sala.getDescripcio().contains("Sala de Descans");
+    }
 
+    private void ofertarUsarItems() {
+        if (jugador.getInventari().isEmpty()) {
+            System.out.println("\nNo portes cap item a l'inventari. Continues cap al combat final.");
+            return;
+        }
+
+        System.out.println("\n--- SALA DE DESCANS ---");
+        System.out.println("Pots usar els teus items per recuperar-te abans del combat final.");
+
+        boolean continuar = true;
+        while (continuar && !jugador.getInventari().isEmpty()) {
+            jugador.mostrarEstat();
+            System.out.println("\nVols usar algun item? (1. Si / 2. No, continuar)");
+
+            int opcio = -1;
+            do {
+                try {
+                    System.out.print("> ");
+                    opcio = sc.nextInt();
+                    sc.nextLine();
+                    if (opcio < 1 || opcio > 2) {
+                        System.out.println("Opcio no valida. Tria 1 o 2.");
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Introdueix un numero valid.");
+                    sc.nextLine();
+                }
+            } while (opcio < 1 || opcio > 2);
+
+            if (opcio == 1) {
+                ArrayList<Item> inventari = jugador.getInventari();
+                System.out.println("Quin item vols usar?");
+                for (int i = 0; i < inventari.size(); i++) {
+                    System.out.println("  " + (i + 1) + ". " + inventari.get(i).getNom()
+                            + " (+" + inventari.get(i).getEfecte() + " energia)");
+                }
+
+                int index = -1;
+                do {
+                    try {
+                        System.out.print("> ");
+                        index = sc.nextInt() - 1;
+                        sc.nextLine();
+                        if (index < 0 || index >= inventari.size()) {
+                            System.out.println("Seleccio no valida.");
+                            index = -1;
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Introdueix un numero valid.");
+                        sc.nextLine();
+                    }
+                } while (index < 0);
+
+                jugador.usarObjecte(index);
+            } else {
+                continuar = false;
+            }
+        }
+
+        if (jugador.getInventari().isEmpty()) {
+            System.out.println("\nNo tens mes items. Preparat per al combat final!");
+        } else {
+            System.out.println("\nD'acord. Guardes els items restants i continues endavant.");
+        }
+    }
+
+    // VERIFICACIO DE CONDICIONS
     public void verificarCondicions() {
         if (!jugador.estaViu()) {
             estatActual = EstatJoc.DERROTA;
@@ -309,25 +383,22 @@ public class Joc {
         }
     }
 
-    // -------------------------------------------------------
     // FINAL
-    // -------------------------------------------------------
-
     private void mostrarFinal() {
-        System.out.println("\n╔══════════════════════════════════════╗");
+        System.out.println("\n+======================================+");
         if (estatActual == EstatJoc.VICTORIA) {
-            System.out.println("║              VICTORIA!               ║");
-            System.out.println("╚══════════════════════════════════════╝");
+            System.out.println("|              VICTORIA!               |");
+            System.out.println("+======================================+");
             System.out.println("\nHas derrotat el Gran Debugger i escapat del dungeon.");
             System.out.println("Puntuacio acumulada: " + jugador.getPuntuacio() + " punts.");
         } else {
-            System.out.println("║              DERROTA...              ║");
-            System.out.println("╚══════════════════════════════════════╝");
+            System.out.println("|              DERROTA...              |");
+            System.out.println("+======================================+");
             System.out.println("\nL'energia de " + jugador.getNom() + " ha arribat a 0.");
-            System.out.println("El dungeon t'ha vençut. Intenta-ho de nou.");
+            System.out.println("El dungeon t'ha venut. Intenta-ho de nou.");
         }
 
-        // Opció de tornar a jugar
+        // Opcio de tornar a jugar
         System.out.println("\nVols tornar a jugar? (1. Si / 2. No)");
         int opcio = -1;
         do {
@@ -345,7 +416,6 @@ public class Joc {
         } while (opcio < 1 || opcio > 2);
 
         if (opcio == 1) {
-            // Reiniciar el joc sense tancar el Scanner
             salaActual = 0;
             estatActual = EstatJoc.JUGANT;
             sales.clear();

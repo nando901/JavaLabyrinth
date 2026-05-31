@@ -1,6 +1,6 @@
 # Casos de Prova
 **Projecte:** Java Labyrinth: The Vibe Quest
-**Alumne:** Fernando Cascón
+**Alumne:** Nando
 **Mòdul:** Entorns de Desenvolupament — DAM1
 **Data:** Maig 2026
 
@@ -90,12 +90,46 @@
 **Passos:**
 1. Completar la Sala 1 i la Sala 2.
 2. Quan apareix la bifurcació, triar l'opció `1` (Camí A).
-3. Comprovar que la Sala 3A apareix amb l'enemic StackOverflow.
+3. Comprovar que la Sala 4A apareix amb l'enemic StackOverflow.
 4. Repetir el procés triant l'opció `2` (Camí B).
-5. Comprovar que apareix la Sala 3B amb un item i després la Sala 3B-2 amb un segon item.
+5. Comprovar que apareix la Sala 4B amb un item i després la Sala 4B-2 amb un enemic.
 
 **Resultat esperat:** Cada camí carrega les sales corresponents correctament.
 **Resultat obtingut:** Ambdós camins funcionen correctament.
+**Estat:** [OK] Superada.
+
+---
+
+### CP-07 — Recollir l'Espasa de Codi i verificar l'augment d'atac
+
+**Objectiu:** Comprovar que l'Espasa de Codi augmenta l'atac del jugador de 15 a 20 i no va a l'inventari.
+
+**Passos:**
+1. Iniciar el joc i completar la Sala 1.
+2. A la Sala 2, triar l'opció `1` per equipar l'Espasa de Codi.
+3. Comprovar que el missatge indica que l'atac ha augmentat a 20.
+4. Comprovar que l'Espasa de Codi no apareix a l'inventari.
+
+**Resultat esperat:** L'atac passa de 15 a 20 i l'espasa no ocupa espai a l'inventari.
+**Resultat obtingut:** L'atac s'actualitza correctament i l'inventari queda buit.
+**Estat:** [OK] Superada.
+
+---
+
+### CP-08 — Sala de descans: usar items de l'inventari
+
+**Objectiu:** Comprovar que a la sala de descans el jugador pot usar items de l'inventari per recuperar energia antes del combat final.
+
+**Passos:**
+1. Recollir almenys un item durant la partida.
+2. Arribar a la sala de descans (Sala 5A o Sala 4B-2 segons el camí).
+3. Recollir l'item de la sala.
+4. Quan apareix el menú de descans, triar `1` per usar un item.
+5. Verificar que l'energia augmenta.
+6. Triar `2` per continuar sense usar més items.
+
+**Resultat esperat:** L'energia del jugador augmenta correctament i el joc continua cap a la sala final.
+**Resultat obtingut:** La sala de descans funciona correctament.
 **Estat:** [OK] Superada.
 
 ---
@@ -264,6 +298,8 @@ void enemicEstaViuAmbVidaPositiva() {
 | CP-04 | Manual | Condició de derrota | [OK] Superada |
 | CP-05 | Manual | Accés al Gran Debugger | [OK] Superada |
 | CP-06 | Manual | Bifurcació de camins | [OK] Superada |
+| CP-07 | Manual | Recollir l'Espasa de Codi i verificar atac | [OK] Superada |
+| CP-08 | Manual | Sala de descans: usar items de l'inventari | [OK] Superada |
 | CT-01 | Automatitzada | Jugador comença amb 100 de vida | [OK] Superada |
 | CT-02 | Automatitzada | `rebreDany` redueix la vida | [OK] Superada |
 | CT-03 | Automatitzada | Vida no pot ser negativa | [OK] Superada |
