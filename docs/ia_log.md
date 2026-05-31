@@ -1,6 +1,6 @@
 # Registre d'ús de la IA
 **Projecte:** Java Labyrinth: The Vibe Quest
-**Alumne:** Nando
+**Alumne:** Fernando Cascón
 **Mòdul:** Entorns de Desenvolupament — DAM1
 
 ---

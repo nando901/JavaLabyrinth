@@ -1,6 +1,6 @@
 # Casos de Prova
 **Projecte:** Java Labyrinth: The Vibe Quest
-**Alumne:** Nando
+**Alumne:** Fernando Cascón
 **Mòdul:** Entorns de Desenvolupament — DAM1
 **Data:** Maig 2026
 

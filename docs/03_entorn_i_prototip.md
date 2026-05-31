@@ -94,12 +94,12 @@ El cap final (`GranDebugger`) hereta d'`Enemic` i afegeix un sistema de fases: c
 
 El prototip inicial permet:
 
-- Iniciar el joc i introduir el nom del jugador.
-- Recórrer les 5 sales del dungeon de manera seqüencial.
-- Combatre enemics amb les opcions: Atacar, Defensar o Usar Objecte.
-- Recollir items i usar-los durant el combat.
-- Enfrontar-se al Gran Debugger com a cap final amb sistema de fases.
-- Mostrar el resultat final (VICTÒRIA o DERROTA).
+- ✅ Iniciar el joc i introduir el nom del jugador.
+- ✅ Recórrer les 5 sales del dungeon de manera seqüencial.
+- ✅ Combatre enemics amb les opcions: Atacar, Defensar o Usar Objecte.
+- ✅ Recollir items i usar-los durant el combat.
+- ✅ Enfrontar-se al Gran Debugger com a cap final amb sistema de fases.
+- ✅ Mostrar el resultat final (VICTÒRIA o DERROTA).
 
 ### Sales del dungeon
 
@@ -129,9 +129,6 @@ java Main
 
 ## 3.7 Captures de l'IDE
 
-> Afegir captures a `evidencies/captures/` i enllaçar-les aquí:
-
-```markdown
 ![Estructura del projecte a VSCode](../evidencies/captures/estructura_projecte.png)
+
 ![Execució del prototip](../evidencies/captures/joc_executant.png)
-```

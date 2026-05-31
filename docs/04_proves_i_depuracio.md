@@ -32,13 +32,11 @@ L'objectiu d'aquesta fase és verificar que el joc funciona correctament en tots
 
 ## 4.3 Evidències de les proves
 
-```markdown
 ![CP-01 Inici del joc](../evidencies/captures/prova_01.png)
 ![CP-02 Validació d'entrada](../evidencies/captures/prova_02.png)
 ![CP-03 Inventari buit](../evidencies/captures/prova_03.png)
 ![CP-04 Derrota](../evidencies/captures/prova_04.png)
 ![CP-05 Gran Debugger](../evidencies/captures/prova_05.png)
-```
 
 ---
 
@@ -85,3 +83,7 @@ System.out.println("✔ Has derrotat " + enemic.getNom() + "!");
 System.out.println("[COMBAT] COMBAT INICIAT contra " + enemic.getNom() + "!");
 System.out.println("[OK] Has derrotat " + enemic.getNom() + "!");
 ```
+
+## 4.6 Resultats dels tests automatitzats
+
+![Tests JUnit en verd](../evidencies/captures/tests_resultats.png)
