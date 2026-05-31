@@ -1,6 +1,6 @@
 # 5. Millores i Reflexió Final
 **Projecte:** Java Labyrinth: The Vibe Quest
-**Alumne:** Fernando Cascón
+**Alumne:** Nando
 **Mòdul:** Entorns de Desenvolupament — DAM1
 **Data:** Maig 2026
 
@@ -13,6 +13,7 @@
 | M-01 | Validar que el nom del jugador no quedi buit | El jugador podia prémer Enter sense escriure res i el joc assignava "Heroi" silenciosament sense avisar | Alta |
 | M-02 | Renombrar `codiNet` per `puntuacio` | El nom `codiNet` no era intuïtiu per a un jugador que no coneix el context tècnic del projecte | Mitjana |
 | M-03 | Afegir opció de tornar a jugar al final de la partida | El joc es tancava directament en acabar, sense donar la possibilitat de jugar una altra partida sense reiniciar el programa | Mitjana |
+| M-04 | Afegir bifurcació de camins després de la Sala 2 | El recorregut era completament lineal, sense cap decisió real per part del jugador. Afegir una bifurcació apropa el joc al concepte de dungeon crawler real | Alta |
 
 ---
 
@@ -23,6 +24,7 @@
 | M-01 — Validació del nom del jugador | `Joc.java` | Vegeu exemple abans/després |
 | M-02 — Renombrar `codiNet` per `puntuacio` | `Jugador.java`, `Joc.java` | Vegeu exemple abans/després |
 | M-03 — Opció de tornar a jugar | `Joc.java` | Vegeu exemple abans/després |
+| M-04 — Bifurcació de camins | `Joc.java` | Vegeu exemple abans/després |
 
 ---
 
@@ -131,6 +133,36 @@ if (opcio == 1) {
 } else {
     System.out.println("\nGracies per jugar. Fins aviat!");
     sc.close();
+}
+```
+
+---
+
+### M-04 — Bifurcació de camins
+
+**Abans:** el recorregut era completament lineal, sense cap decisió real per part del jugador.
+
+```java
+// Abans — crearSales() creava sempre les mateixes 5 sales en ordre fix
+sales.add(sala1);
+sales.add(sala2);
+sales.add(sala3);
+sales.add(sala4);
+sales.add(sala5);
+```
+
+**Després:** després de la Sala 2 el jugador tria entre dos camins amb contingut diferent.
+
+```java
+// Després
+int cami = demanarBifurcacio();
+if (cami == 1) {
+    // Cami A: enemic fort, mes recompensa
+    sales.add(new Sala("Sala 3A — Cambra Fosca", new Enemic("StackOverflow", ...), null));
+} else {
+    // Cami B: dues sales amb items, sense combat
+    sales.add(new Sala("Sala 3B — Magatzem Abandonat", null, new Item(...)));
+    sales.add(new Sala("Sala 3B-2 — Arxiu Secret", null, new Item(...)));
 }
 ```
 

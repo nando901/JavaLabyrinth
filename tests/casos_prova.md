@@ -1,6 +1,6 @@
 # Casos de Prova
 **Projecte:** Java Labyrinth: The Vibe Quest
-**Alumne:** Fernando Cascón
+**Alumne:** Nando
 **Mòdul:** Entorns de Desenvolupament — DAM1
 **Data:** Maig 2026
 
@@ -83,9 +83,22 @@
 **Resultat obtingut:** Es mostra correctament.
 **Estat:** [OK] Superada.
 
----
+### CP-06 — Bifurcació de camins
 
-## Proves automatitzades (JUnit)
+**Objectiu:** Comprovar que la bifurcació funciona correctament i carrega les sales corresponents a cada camí.
+
+**Passos:**
+1. Completar la Sala 1 i la Sala 2.
+2. Quan apareix la bifurcació, triar l'opció `1` (Camí A).
+3. Comprovar que la Sala 3A apareix amb l'enemic StackOverflow.
+4. Repetir el procés triant l'opció `2` (Camí B).
+5. Comprovar que apareix la Sala 3B amb un item i després la Sala 3B-2 amb un segon item.
+
+**Resultat esperat:** Cada camí carrega les sales corresponents correctament.
+**Resultat obtingut:** Ambdós camins funcionen correctament.
+**Estat:** [OK] Superada.
+
+---
 
 Les proves automatitzades s'han implementat amb **JUnit 6.1.0** al fitxer `src/TestJoc.java`.
 
@@ -250,6 +263,7 @@ void enemicEstaViuAmbVidaPositiva() {
 | CP-03 | Manual | Usar objecte amb inventari buit | [OK] Superada |
 | CP-04 | Manual | Condició de derrota | [OK] Superada |
 | CP-05 | Manual | Accés al Gran Debugger | [OK] Superada |
+| CP-06 | Manual | Bifurcació de camins | [OK] Superada |
 | CT-01 | Automatitzada | Jugador comença amb 100 de vida | [OK] Superada |
 | CT-02 | Automatitzada | `rebreDany` redueix la vida | [OK] Superada |
 | CT-03 | Automatitzada | Vida no pot ser negativa | [OK] Superada |

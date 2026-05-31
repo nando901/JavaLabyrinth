@@ -1,6 +1,6 @@
 # Registre d'ús de la IA
 **Projecte:** Java Labyrinth: The Vibe Quest
-**Alumne:** Fernando Cascón
+**Alumne:** Nando
 **Mòdul:** Entorns de Desenvolupament — DAM1
 
 ---
@@ -28,6 +28,7 @@ En cap cas s'ha acceptat cap proposta sense analitzar-la, justificar-la i adapta
 | 4 | Fase 2 | Claude | Vegeu entrada detallada #4 | Va generar el codi PlantUML per al diagrama d'activitat | El codi PlantUML com a base del diagrama | Cap part descartada, però sí revisada i validada | Vegeu entrada detallada #4 |
 | 5 | Fase 3 | Claude | Vegeu entrada detallada #5 | Va generar el codi Java complet de les 9 classes del projecte | L'estructura general i la separació de responsabilitats | Algunes decisions de nomenclatura adaptades al meu estil | Vegeu entrada detallada #5 |
 | 6 | Fase 4 | Claude | Vegeu entrada detallada #6 | Va proposar tres solucions per al problema dels emojis a Windows | La solució definitiva d'eliminar els emojis i usar etiquetes de text | Les solucions de `chcp` i `PrintStream` per ser incomplertes | Vegeu entrada detallada #6 |
+| 7 | Fase 6 | Claude | Vegeu entrada detallada #7 | Va implementar la bifurcació de camins al mètode `crearSales()` | L'estructura del `if/else` per als dos camins i el mètode `demanarBifurcacio()` | Cap part descartada | Vegeu entrada detallada #7 |
 
 ---
 
@@ -225,3 +226,34 @@ El diagnòstic del problema: la incompatibilitat entre l'encoding de PowerShell 
 
 **Valoració crítica:**
 Les solucions de la IA eren tècnicament vàlides en teoria però no resolien el problema en aquest entorn concret. La solució definitiva va ser pròpia: eliminar els emojis i substituir-los per etiquetes de text entre claudàtors (`[COMBAT]`, `[OK]`, `[!]`), que funcionen correctament en qualsevol terminal independentment de la configuració d'encoding.
+
+---
+
+### Entrada #7 — Implementació de la bifurcació de camins
+
+**Fase:** 6 — Refactorització i millores
+**Eina:** Claude
+
+**Prompt:**
+```
+Afegeix una bifurcació de camins al joc després de la Sala 2. El jugador
+ha de poder triar entre dos camins: el Cami A amb un enemic fort i mes
+recompensa, i el Cami B amb dues sales amb items i sense combat. Implementa
+el canvi al metode crearSales() de Joc.java afegint un nou metode
+demanarBifurcacio() amb validació d'entrada.
+```
+
+**Resposta resumida de la IA:**
+Va modificar el mètode `crearSales()` per incloure la bifurcació i va afegir el mètode `demanarBifurcacio()` amb un bucle `do-while` i gestió d'excepcions.
+
+**Decisió presa:**
+S'ha acceptat la implementació completa després de verificar que el codi era coherent amb l'estil del projecte i que la lògica de bifurcació funcionava correctament.
+
+**Què he aprofitat:**
+L'estructura completa de la bifurcació: el `if/else` per als dos camins, el mètode `demanarBifurcacio()` i les sales amb contingut diferenciat per a cada camí.
+
+**Què he descartat:**
+Cap element. La idea de la bifurcació va ser pròpia i prèvia a la consulta; la IA simplement va implementar el disseny ja decidit.
+
+**Valoració crítica:**
+La implementació era correcta i coherent. La decisió de fer el Camí A més arriscat i el Camí B més segur com a mecànica de risc/recompensa va ser una decisió de disseny pròpia que la IA va implementar fidelment.

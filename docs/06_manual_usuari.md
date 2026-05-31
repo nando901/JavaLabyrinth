@@ -1,6 +1,6 @@
 # Manual d'Usuari
 **Projecte:** Java Labyrinth: The Vibe Quest
-**Alumne:** Fernando Cascón
+**Alumne:** Nando
 **Mòdul:** Entorns de Desenvolupament — DAM1
 
 ---
@@ -61,9 +61,14 @@ O bé obrir `Main.java` a VSCode i clicar el botó **Run** que apareix sobre el 
 |---|---|---|
 | Sala 1 | Entrada del Dungeon | Enemic: Bug Menor (30 vida, 8 dany) |
 | Sala 2 | Corredor dels Logs | Item: Poció de Refactoring (+30 energia) |
-| Sala 3 | Cambra del NullPointer | Enemic: NullPointerException (50 vida, 14 dany) |
+| — | **BIFURCACIÓ** | Tries entre el Camí A o el Camí B |
+| Sala 3A | Cambra Fosca *(Camí A)* | Enemic: StackOverflow (70 vida, 18 dany, +35 puntuació) |
+| Sala 3B | Magatzem Abandonat *(Camí B)* | Item: Kit de Reparació (+40 energia) |
+| Sala 3B-2 | Arxiu Secret *(Camí B)* | Item: Poció Extra (+25 energia) |
 | Sala 4 | Arxiu de les Dependències | Item: Kit de Debugging (+50 energia) |
 | Sala 5 | Cambra del Gran Debugger | Cap final: Gran Debugger (180 vida, 25 dany base) |
+
+> El **Camí A** és més arriscat però dona més puntuació. El **Camí B** és més segur i ofereix dos items per recuperar energia.
 
 ---
 

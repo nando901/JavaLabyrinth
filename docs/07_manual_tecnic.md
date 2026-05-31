@@ -1,6 +1,6 @@
 # Manual Tècnic
 **Projecte:** Java Labyrinth: The Vibe Quest
-**Alumne:** Fernando Cascón
+**Alumne:** Nando
 **Mòdul:** Entorns de Desenvolupament — DAM1
 
 ---
@@ -95,6 +95,7 @@ Personatge (abstracta)
 | `try-catch` per a les entrades | Evita que el programa es tanqui amb `InputMismatchException` si l'usuari introdueix un caràcter no vàlid | Sense validació |
 | Etiquetes de text en lloc d'emojis | Els emojis no es mostren correctament a la consola de Windows per problemes d'encoding | Emojis Unicode |
 | `Main.java` separat de `Joc.java` | El punt d'entrada no conté lògica pròpia, cosa que fa el codi més llegible i el joc instanciable de manera independent | Tot al `main` |
+| Bifurcació de camins a la Sala 3 | Trenca la linealitat del joc i introdueix una decisió real per al jugador: risc/recompensa (Camí A) vs seguretat/recursos (Camí B) | Recorregut completament lineal |
 
 ---
 

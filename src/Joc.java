@@ -33,7 +33,7 @@ public class Joc {
         System.out.println("║   JAVA LABYRINTH: THE VIBE QUEST     ║");
         System.out.println("╚══════════════════════════════════════╝");
         System.out.println("\nBenvingut, desenvolupador.");
-        System.out.println("La masmorra t'espera. Troba el Gran Debugger i escapa.\n");
+        System.out.println("La dungeon t'espera. Troba el Gran Debugger i escapa.\n");
     }
 
     private void crearJugador() {
@@ -45,28 +45,51 @@ public class Joc {
                 System.out.println("[!] El nom no pot estar buit. Torna-ho a intentar.");
             }
         } while (nom.isEmpty());
-
         jugador = new Jugador(nom);
         System.out.println("\nBenvingut, " + jugador.getNom() + "! Que comenci l'aventura.\n");
     }
+
     private void crearSales() {
+        // Sales fixes
         sales.add(new Sala(
-                "Sala 1 — Entrada de la masmorra\nMurs de pedra humida t'envolten. Una torxa parpelleja al fons.",
+                "Sala 1 — Entrada del Dungeon\nMurs de pedra humida t'envolten. Una torxa parpelleja al fons.",
                 new Enemic("Bug Menor", "Error Runtime", 30, 8, 10),
                 null
         ));
         sales.add(new Sala(
                 "Sala 2 — Corredor dels Logs\nFileres de codi erroni cobreixen les parets. Fa olor de stack overflow.",
                 null,
-                new Item("Poció de Refactoring", 30, "Restaura 30 punts d'energia.")
+                new Item("Pocio de Refactoring", 30, "Restaura 30 punts d'energia.")
         ));
+
+        // Bifurcació: el jugador tria el camí
+        int cami = demanarBifurcacio();
+
+        if (cami == 1) {
+            // Cami A: mes risc, mes recompensa
+            sales.add(new Sala(
+                    "Sala 3A — Cambra Fosca\nFoscor absoluta. Sents una respiracio pesada al teu costat.",
+                    new Enemic("StackOverflow", "Error Fatal", 70, 18, 35),
+                    null
+            ));
+        } else {
+            // Cami B: mes segur, dos items
+            sales.add(new Sala(
+                    "Sala 3B — Magatzem Abandonat\nPrestatgeries plenes de fragments de codi antic. Res es mou.",
+                    null,
+                    new Item("Kit de Reparacio", 40, "Restaura 40 punts d'energia.")
+            ));
+            // Segona sala del cami B amb un segon item
+            sales.add(new Sala(
+                    "Sala 3B-2 — Arxiu Secret\nUn cofre ocult rere una pila de logs. Potser hi ha alguna cosa util.",
+                    null,
+                    new Item("Poció Extra", 25, "Restaura 25 punts d'energia.")
+            ));
+        }
+
+        // Sales fixes finals
         sales.add(new Sala(
-                "Sala 3 — Cambra del NullPointer\nUna presència invisible es fa sentir. El codi crida a l'error.",
-                new Enemic("NullPointerException", "Error Crític", 50, 14, 20),
-                null
-        ));
-        sales.add(new Sala(
-                "Sala 4 — Arxiu de les Dependències\nPaquets trencats per tot arreu. El terra tremola.",
+                "Sala 4 — Arxiu de les Dependencies\nPaquets trencats per tot arreu. El terra tremola.",
                 null,
                 new Item("Kit de Debugging", 50, "Restaura 50 punts d'energia.")
         ));
@@ -77,7 +100,36 @@ public class Joc {
         ));
     }
 
+    private int demanarBifurcacio() {
+        System.out.println("\n========================================");
+        System.out.println("Davant teu hi ha dues portes.");
+        System.out.println("  1. [CAMI A] Porta fosca — Sembla perillosa. Potser hi ha mes recompensa.");
+        System.out.println("  2. [CAMI B] Porta il·luminada — Sembla segura. Probablement hi ha recursos.");
+        System.out.println("========================================");
+        System.out.println("Quin cami tries?");
+
+        int opcio = -1;
+        do {
+            try {
+                System.out.print("> ");
+                opcio = sc.nextInt();
+                sc.nextLine();
+                if (opcio < 1 || opcio > 2) {
+                    System.out.println("Opcio no valida. Tria 1 o 2.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Introdueix un numero valid.");
+                sc.nextLine();
+            }
+        } while (opcio < 1 || opcio > 2);
+
+        return opcio;
+    }
+
+    // -------------------------------------------------------
     // BUCLE PRINCIPAL
+    // -------------------------------------------------------
+
     public void buclePrincipal() {
         do {
             Sala sala = sales.get(salaActual);
@@ -103,7 +155,10 @@ public class Joc {
         mostrarFinal();
     }
 
+    // -------------------------------------------------------
     // COMBAT
+    // -------------------------------------------------------
+
     private void combatLoop(Enemic enemic) {
         System.out.println("\n[COMBAT] COMBAT INICIAT contra " + enemic.getNom() + "!\n");
 
@@ -210,7 +265,10 @@ public class Joc {
         jugador.usarObjecte(index);
     }
 
+    // -------------------------------------------------------
     // ITEMS
+    // -------------------------------------------------------
+
     private void recollirItem(Sala sala) {
         Item item = sala.getItem();
         System.out.println("\nTrobes un objecte: " + item.getNom());
@@ -239,7 +297,10 @@ public class Joc {
         }
     }
 
+    // -------------------------------------------------------
     // VERIFICACIÓ DE CONDICIONS
+    // -------------------------------------------------------
+
     public void verificarCondicions() {
         if (!jugador.estaViu()) {
             estatActual = EstatJoc.DERROTA;
@@ -248,7 +309,10 @@ public class Joc {
         }
     }
 
+    // -------------------------------------------------------
     // FINAL
+    // -------------------------------------------------------
+
     private void mostrarFinal() {
         System.out.println("\n╔══════════════════════════════════════╗");
         if (estatActual == EstatJoc.VICTORIA) {
