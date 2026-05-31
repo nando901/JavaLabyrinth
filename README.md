@@ -64,7 +64,7 @@ java-labyrinth-vibe-quest/
 
 ## Enllaç al vídeo de gameplay
 
-> Afegir aquí l'enllaç al vídeo de gameplay comentat un cop enregistrat.
+[Veure vídeo de gameplay comentat](https://drive.google.com/file/d/1nq2xxwz0Mc5fDaPd7FCwY2JArj85TgOm/view?usp=sharing)
 
 ## Autor
 
